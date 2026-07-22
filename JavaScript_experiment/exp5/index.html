@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practical 5 | Cart Total with Array.reduce()</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <span class="badge">Experiment 05</span>
+        <h1>Shopping Cart — Array.reduce()</h1>
+    </header>
+
+    <main>
+        <section class="cart">
+            <div class="cart-grid" id="cartItems">
+                <!-- Populated from the `cart` array in script.js -->
+            </div>
+
+            <div class="summary">
+                <span class="label">Final Cart Total</span>
+                <span class="value" id="cartTotal">—</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>JavaScript Lab Experiment &middot; <strong>Vinay Rautulwar</strong></p>
+    </footer>
+
+    <!-- Original experiment logic — unchanged -->
+    <script src="script.js"></script>
+
+    <!-- Presentation-only layer: reads the existing `cart` array and the
+         result of calculateCartTotal(cart) — both already computed by
+         script.js — to render the cart visually. No pricing logic here. -->
+    <script>
+        const cartItemsEl = document.getElementById('cartItems');
+
+        cart.forEach(entry => {
+            const lineTotal = entry.price * entry.quantity;
+            const discountLabel = entry.discount
+                ? (entry.discount.type === 'percentage'
+                    ? `${entry.discount.value}% off`
+                    : `₹${entry.discount.value.toFixed(2)} off`)
+                : null;
+
+            const card = document.createElement('div');
+            card.className = 'cart-item';
+            card.innerHTML = `
+                <span class="name">${entry.item}</span>
+                <span class="price">$${lineTotal.toFixed(2)}</span>
+                <span class="meta">
+                    Qty ${entry.quantity} &times; $${entry.price.toFixed(2)}
+                    ${discountLabel ? `<span class="discount-chip">${discountLabel}</span>` : ''}
+                </span>
+            `;
+            cartItemsEl.appendChild(card);
+        });
+
+        document.getElementById('cartTotal').textContent = `$${finalTotal.toFixed(2)}`;
+    </script>
+
+</body>
+</html>

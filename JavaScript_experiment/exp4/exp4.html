@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practical 4 | Palindrome Checker (Closures)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <span class="badge">Experiment 04</span>
+        <h1>Closures &amp; Scope — Palindrome Checker</h1>
+    </header>
+
+    <main class="container">
+        <p class="subtitle">Uses the closure-based <code>checkPalindrome()</code> tracker defined in script.js</p>
+
+        <div class="tester">
+            <input type="text" id="palindromeInput" placeholder="Type something to test...">
+            <button id="checkBtn">Check</button>
+        </div>
+
+        <div id="checkResult">Enter text above and press Check</div>
+
+        <h2 class="log-title">Built-in test cases (from script.js)</h2>
+        <ul class="sample-list" id="sampleList"></ul>
+    </main>
+
+    <footer class="site-footer">
+        <p>JavaScript Lab Experiment &middot; <strong>Vinay Rautulwar</strong></p>
+    </footer>
+
+    <!-- Original experiment logic — unchanged. Declares createPalindromeTracker
+         and the global checkPalindrome() closure, and runs the original
+         console.log test cases exactly as authored. -->
+    <script src="script.js"></script>
+
+    <!-- Presentation-only layer: calls the existing global checkPalindrome()
+         function to power a live UI. No logic from script.js is duplicated
+         or modified. -->
+    <script>
+        const input = document.getElementById('palindromeInput');
+        const resultBox = document.getElementById('checkResult');
+        const checkBtn = document.getElementById('checkBtn');
+
+        function runCheck() {
+            const value = input.value;
+            const result = checkPalindrome(value);
+            resultBox.textContent = result
+                ? `✅ "${value}" is a palindrome`
+                : `❌ "${value}" is not a palindrome`;
+            resultBox.classList.remove('pass', 'fail');
+            resultBox.classList.add(result ? 'pass' : 'fail');
+        }
+
+        checkBtn.addEventListener('click', runCheck);
+        input.addEventListener('keypress', (e) => { if (e.key === 'Enter') runCheck(); });
+
+        // Mirror the same sample cases already logged by script.js, using the
+        // same global function, purely for display.
+        const samples = [
+            "A man, a plan, a canal: Panama",
+            "race car",
+            "hello world",
+            ""
+        ];
+        const list = document.getElementById('sampleList');
+        samples.forEach(sample => {
+            const isPass = checkPalindrome(sample);
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${sample === "" ? "(empty string)" : `"${sample}"`}</span>
+                             <span class="tag ${isPass ? 'pass' : 'fail'}">${isPass ? 'PASS' : 'FAIL'}</span>`;
+            list.appendChild(li);
+        });
+    </script>
+
+</body>
+</html>

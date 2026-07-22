@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Practical 1 | Inline, Internal &amp; External JS</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- Internal JavaScript (kept exactly as in the original experiment) -->
+<script>
+function welcomeMessage(){
+    alert("JavaScript Experiment 1!");
+}
+</script>
+
+</head>
+
+<body>
+
+<header class="site-header">
+  <span class="badge">Experiment 01</span>
+  <h1>Inline, Internal &amp; External JavaScript</h1>
+</header>
+
+<main class="container">
+
+  <p class="subtitle">Demonstration of Inline, Internal and External JavaScript</p>
+
+  <div class="btn-group">
+    <!-- Inline JavaScript -->
+    <button onclick="welcomeMessage()">
+      Show Welcome Message
+    </button>
+
+    <button onclick="showEnvironment()">
+      Show Environment Information
+    </button>
+  </div>
+
+  <div id="output"></div>
+
+</main>
+
+<footer class="site-footer">
+  <p>JavaScript Lab Experiment &middot; <strong>Vinay Rautulwar</strong></p>
+</footer>
+
+<!-- External JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>

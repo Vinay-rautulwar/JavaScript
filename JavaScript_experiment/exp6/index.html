@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practical 6 | Email Validator (Regex)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <span class="badge">Experiment 06</span>
+        <h1>Regex Email Validator</h1>
+    </header>
+
+    <main class="container">
+        <p class="subtitle">Uses the global <code>validateEmail()</code> function defined in script.js</p>
+
+        <div class="field">
+            <label for="emailInput">Try your own email</label>
+            <input type="text" id="emailInput" placeholder="e.g. user.name@example.com">
+        </div>
+
+        <div id="emailResult">Start typing to validate</div>
+
+        <h2 class="log-title">Built-in test cases (from script.js)</h2>
+        <ul class="sample-list" id="sampleList"></ul>
+    </main>
+
+    <footer class="site-footer">
+        <p>JavaScript Lab Experiment &middot; <strong>Vinay Rautulwar</strong></p>
+    </footer>
+
+    <!-- Original experiment logic — unchanged -->
+    <script src="script.js"></script>
+
+    <!-- Presentation-only layer: calls the existing global validateEmail()
+         function to drive a live UI. No regex or validation logic here. -->
+    <script>
+        const emailInput = document.getElementById('emailInput');
+        const emailResult = document.getElementById('emailResult');
+
+        emailInput.addEventListener('input', () => {
+            const value = emailInput.value;
+            if (value.trim() === '') {
+                emailResult.textContent = 'Start typing to validate';
+                emailResult.classList.remove('valid', 'invalid');
+                return;
+            }
+            const isValid = validateEmail(value);
+            emailResult.textContent = isValid ? '✅ Valid email address' : '❌ Invalid email address';
+            emailResult.classList.toggle('valid', isValid);
+            emailResult.classList.toggle('invalid', !isValid);
+        });
+
+        const samples = ["user.name+test@domain.co.uk", "invalid-email@com"];
+        const list = document.getElementById('sampleList');
+        samples.forEach(sample => {
+            const isValid = validateEmail(sample);
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${sample}</span><span class="tag ${isValid ? 'valid' : 'invalid'}">${isValid ? 'VALID' : 'INVALID'}</span>`;
+            list.appendChild(li);
+        });
+    </script>
+
+</body>
+</html>

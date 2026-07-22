@@ -1,0 +1,165 @@
+/* ============================================
+   Experiment 3 — Student Grading System
+   ============================================ */
+
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --line: #d1d5db;
+  --danger: #dc3545;
+  --success: #28a745;
+  --bg-start: #eef1ff;
+  --bg-end: #e0e7ff;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(160deg, var(--bg-start), var(--bg-end));
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px;
+}
+
+header.site-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+header.site-header .badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.container {
+  background: #ffffff;
+  padding: 32px clamp(20px, 5vw, 36px);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 32px rgba(79, 70, 229, 0.18);
+  width: 100%;
+  max-width: 460px;
+}
+
+h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+input.invalid {
+  border-color: var(--danger);
+  background-color: #fff8f8;
+}
+
+.error-msg {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 5px;
+  display: block;
+  min-height: 18px;
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.result-card {
+  margin-top: 26px;
+  padding: 20px;
+  border-left: 5px solid var(--success);
+  background-color: #f3fef6;
+  border-radius: 10px;
+  animation: fadeIn 0.25s ease;
+}
+
+.result-card h3 {
+  margin-top: 0;
+}
+
+.result-card p {
+  margin: 6px 0;
+}
+
+.result-card.fail {
+  border-left-color: var(--danger);
+  background-color: #fff5f5;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer.site-footer {
+  margin-top: 28px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+footer.site-footer strong {
+  color: var(--ink);
+}

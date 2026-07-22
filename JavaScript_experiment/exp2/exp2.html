@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practical 2 | Invoice Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <span class="badge">Experiment 02</span>
+        <h1>Variables, Scoping &amp; Template Literals</h1>
+    </header>
+
+    <main>
+        <section class="receipt" aria-label="Generated invoice">
+            <h2>INVOICE</h2>
+            <p class="customer">Billed to <strong id="invCustomer">—</strong></p>
+
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th class="num">Price</th>
+                    </tr>
+                </thead>
+                <tbody id="invItems">
+                    <!-- Populated from script.js data, see below -->
+                </tbody>
+            </table>
+
+            <div class="summary" id="invSummary">
+                <div class="summary-row"><span>Subtotal</span><span id="invSubtotal">—</span></div>
+                <div class="summary-row"><span>Tax</span><span id="invTax">—</span></div>
+                <div class="summary-row"><span>Shipping</span><span id="invShipping">—</span></div>
+                <div class="summary-row total"><span>Total Due</span><span id="invTotal">—</span></div>
+            </div>
+        </section>
+
+        <p class="hint">Open the browser console to see the original logged invoice text.</p>
+    </main>
+
+    <footer class="site-footer">
+        <p>JavaScript Lab Experiment &middot; <strong>Vinay Rautulwar</strong></p>
+    </footer>
+
+    <!-- Original experiment logic — unchanged -->
+    <script src="script.js"></script>
+
+    <!-- Presentation-only layer: reads the variables already declared in
+         script.js (items, customerName, totalCost, taxAmount, SHIPPING_FEE,
+         finalTotal) and renders them into the receipt card above.
+         No calculation logic is duplicated or altered here. -->
+    <script>
+        document.getElementById('invCustomer').textContent = customerName;
+
+        const itemsBody = document.getElementById('invItems');
+        items.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${item.name}</td><td class="num">₹${item.price.toFixed(2)}</td>`;
+            itemsBody.appendChild(row);
+        });
+
+        document.getElementById('invSubtotal').textContent = `₹${totalCost.toFixed(2)}`;
+        document.getElementById('invTax').textContent = `₹${taxAmount.toFixed(2)}`;
+        document.getElementById('invShipping').textContent = `₹${SHIPPING_FEE.toFixed(2)}`;
+        document.getElementById('invTotal').textContent = `₹${finalTotal.toFixed(2)}`;
+    </script>
+
+</body>
+</html>

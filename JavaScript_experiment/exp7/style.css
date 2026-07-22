@@ -1,0 +1,170 @@
+/* ============================================
+   Experiment 7 — DOM Traversal To-Do App
+   ============================================ */
+
+:root {
+  --primary: #f59e0b;
+  --primary-dark: #d97706;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --edit: #eab308;
+  --bg-start: #fffbeb;
+  --bg-end: #fef3c7;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(160deg, var(--bg-start), var(--bg-end));
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px;
+}
+
+header.site-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+header.site-header .badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.todo-container {
+  background: #ffffff;
+  padding: 28px clamp(18px, 5vw, 30px);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 32px rgba(245, 158, 11, 0.2);
+  width: 100%;
+  max-width: 460px;
+}
+
+.todo-container h1 {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.input-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+}
+
+#todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+#todo-list:empty::after {
+  content: "No tasks yet — add one above!";
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  gap: 10px;
+  background: #fffdf8;
+  transition: box-shadow 0.15s ease;
+}
+
+li:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.task-text {
+  flex: 1;
+  word-break: break-word;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1.5px solid var(--edit);
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+li > div {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+button:hover { filter: brightness(0.94); transform: translateY(-1px); }
+
+#add-btn {
+  background-color: var(--success);
+  color: white;
+  padding: 12px 20px;
+}
+
+.edit-btn { background-color: var(--edit); color: #1f2937; }
+.delete-btn { background-color: var(--danger); color: white; }
+.save-btn { background-color: #3b82f6; color: white; }
+
+footer.site-footer {
+  margin-top: 28px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+footer.site-footer strong {
+  color: var(--ink);
+}
+
+@media (max-width: 420px) {
+  .input-section { flex-direction: column; }
+  li { flex-wrap: wrap; }
+}

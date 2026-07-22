@@ -1,0 +1,110 @@
+/* ============================================
+   Experiment 9 — Theme Preference with localStorage
+   ============================================ */
+
+/* Default Light Theme */
+:root, html[data-theme="light"] {
+    --bg-color: #f7f7fb;
+    --text-color: #1f2937;
+    --card-bg: #ffffff;
+    --muted: #6b7280;
+    --accent: #6366f1;
+    --accent-contrast: #ffffff;
+    --line: #e5e7eb;
+}
+
+/* Dark Theme */
+html[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #f4f4f5;
+    --card-bg: #1e1e22;
+    --muted: #9ca3af;
+    --accent: #818cf8;
+    --accent-contrast: #12121a;
+    --line: #2f2f36;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-contrast);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 40px clamp(24px, 6vw, 48px);
+    text-align: center;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.card h1 {
+    margin: 0 0 10px;
+    font-size: 1.6rem;
+}
+
+.card p {
+    color: var(--muted);
+    margin-bottom: 26px;
+    line-height: 1.5;
+}
+
+#theme-toggle {
+    padding: 13px 28px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--accent);
+    color: var(--accent-contrast);
+    transition: transform 0.15s ease, filter 0.15s ease, background-color 0.3s, color 0.3s;
+}
+
+#theme-toggle:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+}
+
+#theme-toggle:active {
+    transform: translateY(0);
+}
+
+footer.site-footer {
+    margin-top: 26px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    transition: color 0.3s;
+}
+
+footer.site-footer strong {
+    color: var(--text-color);
+}
