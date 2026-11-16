@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer &amp; Class Scheduler</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      background: #f3f5f8;
+      color: #202b3c;
+      font-family: Arial, sans-serif;
+    }
+
+    main {
+      width: min(100%, 680px);
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      text-align: center;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+    }
+
+    section {
+      margin-bottom: 20px;
+      padding: 22px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 3px 14px #18263a12;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 1.2rem;
+    }
+
+    .timer-display {
+      margin: 8px 0 18px;
+      color: #2456a6;
+      font-size: clamp(3rem, 12vw, 4.5rem);
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+    }
+
+    .timer-setting {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    input,
+    button {
+      min-height: 42px;
+      padding: 9px 11px;
+      border: 1px solid #cbd3df;
+      border-radius: 7px;
+      font: inherit;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    .timer-setting input {
+      width: 90px;
+    }
+
+    button {
+      border: 0;
+      background: #2456a6;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #193f7c;
+    }
+
+    button.secondary {
+      background: #e8edf5;
+      color: #202b3c;
+    }
+
+    button.secondary:hover {
+      background: #dce4ef;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .status {
+      min-height: 20px;
+      margin: 12px 0 0;
+      color: #59677a;
+      text-align: center;
+    }
+
+    .class-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .class-form label {
+      display: grid;
+      gap: 6px;
+      color: #59677a;
+      font-size: 0.9rem;
+    }
+
+    .class-form .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .class-list {
+      display: grid;
+      gap: 10px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .class-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid #e1e6ee;
+      border-radius: 8px;
+    }
+
+    .class-item span:last-child {
+      color: #2456a6;
+      font-weight: bold;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .empty-message {
+      margin: 16px 0 0;
+      color: #69778a;
+    }
+
+    @media (max-width: 460px) {
+      section {
+        padding: 18px;
+      }
+
+      .class-form {
+        grid-template-columns: 1fr;
+      }
+
+      .class-form .full-width {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Countdown Timer &amp; Class Scheduler</h1>
+
+    <section aria-labelledby="timer-heading">
+      <h2 id="timer-heading">Countdown Timer</h2>
+      <div class="timer-setting">
+        <label for="timer-minutes">Duration:</label>
+        <input id="timer-minutes" type="number" min="1" value="5">
+        <span>minutes</span>
+      </div>
+      <div id="timer-display" class="timer-display" aria-live="polite">05:00</div>
+      <div class="button-row">
+        <button id="start-button" type="button">Start</button>
+        <button id="pause-button" class="secondary" type="button">Pause</button>
+        <button id="reset-button" class="secondary" type="button">Reset</button>
+      </div>
+      <p id="timer-status" class="status" aria-live="polite"></p>
+    </section>
+
+    <section aria-labelledby="scheduler-heading">
+      <h2 id="scheduler-heading">Add a Class</h2>
+      <form id="class-form" class="class-form">
+        <label class="full-width" for="class-name">
+          Class name
+          <input id="class-name" type="text" placeholder="e.g. Mathematics" required>
+        </label>
+        <label for="class-date">
+          Date
+          <input id="class-date" type="date" required>
+        </label>
+        <label for="class-time">
+          Time
+          <input id="class-time" type="time" required>
+        </label>
+        <button class="full-width" type="submit">Add Class</button>
+      </form>
+      <p id="class-status" class="status" aria-live="polite"></p>
+    </section>
+
+    <section aria-labelledby="upcoming-heading">
+      <h2 id="upcoming-heading">Upcoming Classes</h2>
+      <ul id="class-list" class="class-list"></ul>
+      <p id="empty-message" class="empty-message">No upcoming classes yet.</p>
+    </section>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

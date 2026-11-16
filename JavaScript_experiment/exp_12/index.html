@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="page-header">
+      <p class="eyebrow">A little more organized</p>
+      <h1>Task Manager</h1>
+      <p>Add tasks, check them off, and keep your list for next time.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="tasks-heading">
+      <h2 id="tasks-heading">Your tasks</h2>
+      <form id="task-form">
+        <label for="task-input">What needs to get done?</label>
+        <div class="task-entry">
+          <input id="task-input" name="task" type="text" placeholder="e.g. Water the plants" maxlength="120" required>
+          <button type="submit">Add task</button>
+        </div>
+      </form>
+      <ul id="task-list" class="task-list" aria-live="polite"></ul>
+      <p id="empty-message" class="empty-message">No tasks yet. Add one above to get started.</p>
+    </section>
+
+    <section class="panel sample-panel" aria-labelledby="sample-heading">
+      <h2 id="sample-heading">Sample ideas</h2>
+      <p class="section-note">A few example tasks loaded from a public sample API.</p>
+      <p id="sample-message" class="sample-message" role="status">Loading sample ideas…</p>
+      <ul id="sample-list" class="sample-list"></ul>
+    </section>
+    <footer>Tasks are saved in this browser on this device.</footer>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
